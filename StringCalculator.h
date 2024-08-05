@@ -9,18 +9,19 @@ int isStringEmpty(const char* str) {
 
 void extractDelimiter(const char* str, char* delimiter) {
     int i = 2;  // Start after the initial delimiter //
-    delimiter[0] = '\0';
+    int j = 0;
     while (str[i] != '\0' && str[i] != '\n') {
-        strncat(delimiter, &str[i], 1);
-        i++;
+        delimiter[j++] = str[i++];
     }
+    delimiter[j] = '\0';  // Null-terminate the delimiter string
 }
 
 void findDelimiter(const char* str, char* delimiter) {
-    if (str[0] == '/' && str[1] == '/')
+    if (str[0] == '/' && str[1] == '/') {
         extractDelimiter(str, delimiter);
-    else
+    } else {
         strcpy(delimiter, ",\n");
+    }
 }
 
 int processValue(int value) {
